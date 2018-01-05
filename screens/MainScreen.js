@@ -62,10 +62,12 @@ const styles = StyleSheet.create({
   },
   logoContainer:{
     alignItems:'center',
+    justifyContent:'center',
+    flex:0.5
   },
   buttonWrapper:{
     justifyContent:'space-around',
     paddingHorizontal:20,
-    flex:0.5
+    flex:0.3
   }
 });
