@@ -50,14 +50,13 @@ export default class MainScreen extends React.Component {
   };
   _onSignupPress = () => {
       console.log('Signup Button is pressed!');
-      this.navigate('LoginForm', { data: 'Sharma' });
+      this.navigate('SignupForm', { data: 'Sharma' });
   };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 15,
     backgroundColor: '#fff',
   },
   logoContainer:{

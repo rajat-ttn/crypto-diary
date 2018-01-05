@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 
 import MainScreen from '../screens/MainScreen';
 import LoginFormScreen from '../screens/LoginFormScreen';
+import SignupFormScreen from '../screens/SignupFormScreen';
 
 const RootStackNavigator = StackNavigator(
   {
@@ -13,6 +14,9 @@ const RootStackNavigator = StackNavigator(
     },
     LoginForm:{
       screen:LoginFormScreen
+    },
+    SignupForm:{
+      screen:SignupFormScreen
     }
   },
   {
