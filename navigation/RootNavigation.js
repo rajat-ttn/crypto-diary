@@ -7,16 +7,25 @@ import MainScreen from '../screens/MainScreen';
 import LoginFormScreen from '../screens/LoginFormScreen';
 import SignupFormScreen from '../screens/SignupFormScreen';
 
+import DrawerNavigator from './DrawerNavigator';
+
 const RootStackNavigator = StackNavigator(
   {
     Main:{
-      screen:MainScreen
+      screen:MainScreen,
     },
     LoginForm:{
-      screen:LoginFormScreen
+      screen:LoginFormScreen,
     },
     SignupForm:{
       screen:SignupFormScreen
+    },
+    HomeScreen:{
+      screen: DrawerNavigator,
+        navigationOptions:{
+            header:null,
+            title:'rajat'
+        }
     }
   },
   {
@@ -24,6 +33,7 @@ const RootStackNavigator = StackNavigator(
       headerTitleStyle: {
         fontWeight: 'normal',
       },
+        title:'hello'
     })
   }
 );

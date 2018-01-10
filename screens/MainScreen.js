@@ -3,10 +3,11 @@ import {
     ScrollView,
     StyleSheet,
     Text,
-    Button,
+    //Button,
     Image,
     View
 } from 'react-native';
+import {  Button } from 'react-native-elements';
 
 export default class MainScreen extends React.Component {
   static navigationOptions = {
@@ -24,7 +25,6 @@ export default class MainScreen extends React.Component {
         <View style={[styles.logoContainer]}>
           <Image
               source={require('../assets/images/app_logo.jpg')}
-              resizeMode={'contain'}
               style={{width:200,height:200}}
           />
         </View>
@@ -32,12 +32,17 @@ export default class MainScreen extends React.Component {
           <Button
               onPress={this._onLoginPress}
               title="Login"
-              color="#841584"
+              backgroundColor="#841584"
           />
           <Button
               onPress={this._onSignupPress}
               title="Sign-up"
-              color="#841584"
+              backgroundColor="#841584"
+          />
+          <Button
+              onPress={this._onGotToDrawerPress}
+              title="go to drawer"
+              backgroundColor="#841584"
           />
         </View>
       </View>
@@ -51,6 +56,10 @@ export default class MainScreen extends React.Component {
   _onSignupPress = () => {
       console.log('Signup Button is pressed!');
       this.navigate('SignupForm', { data: 'Sharma' });
+  };
+  _onGotToDrawerPress = () => {
+    console.log('Signup Button is pressed!');
+    this.navigate('HomeScreen', { data: 'Ola' });
   };
 }
 
