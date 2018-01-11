@@ -8,6 +8,7 @@ import {
     View
 } from 'react-native';
 import {  Button } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation'
 
 export default class MainScreen extends React.Component {
   static navigationOptions = {
@@ -55,7 +56,18 @@ export default class MainScreen extends React.Component {
   };
   _onSignupPress = () => {
       console.log('Signup Button is pressed!');
-      this.navigate('SignupForm', { data: 'Sharma' });
+      //this.navigate('SignupForm', { data: 'Sharma' });
+
+
+      const resetAction = NavigationActions.reset({
+          index: 1,
+          actions: [
+              NavigationActions.navigate({ routeName: 'Main'}),
+              NavigationActions.navigate({ routeName: 'SignupForm'})
+          ]
+      });
+
+      this.props.navigation.dispatch(resetAction)
   };
   _onGotToDrawerPress = () => {
     console.log('Signup Button is pressed!');

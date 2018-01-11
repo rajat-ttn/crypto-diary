@@ -1,8 +1,9 @@
 const defaultState = {
-    name:'',
-    email:'',
-    password:'',
-    error:null
+    name:'Rajat Sharma',
+    email:'rajat.sharma@tothenew.com',
+    password:'hola@123',
+    error:null,
+    isSignupSpinnerShown:false
 };
 
 export default signupFormReducer = (state = defaultState, action) => {

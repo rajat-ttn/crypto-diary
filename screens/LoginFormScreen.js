@@ -7,9 +7,14 @@ export default class LoginFormScreen extends React.Component {
     header: null
   };
 
+  constructor(props){
+      super(props);
+      console.log('login Form constructor called!!!!');
+  }
+
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.formContainer}>
 
           <FormLabel>Email</FormLabel>
@@ -25,7 +30,7 @@ export default class LoginFormScreen extends React.Component {
             backgroundColor={'#841584'}
         />
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }

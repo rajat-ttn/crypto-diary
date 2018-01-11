@@ -10,9 +10,14 @@ class SignupFormScreen extends React.Component {
         header: null
     };
 
+    constructor(props){
+        super(props);
+        console.log('signup Form constructor called!!!!');
+    }
+
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
               <View style={styles.formContainer}>
 
                 <FormLabel>Name</FormLabel>
@@ -35,27 +40,34 @@ class SignupFormScreen extends React.Component {
                     value = { this.props.password}
                     placeholder={'password'}
                 />
-
-                <FormValidationMessage>Generic error message</FormValidationMessage>
-
+                 { this._renderErrorMsg()}
               </View>
               <View style={styles.btnContainer}>
                 <Button
                     title='Signup'
                     backgroundColor={'#841584'}
                     onPress={this._onSignupPress}
+                    loading={this.props.isSignupSpinnerShown}
                 />
               </View>
-            </ScrollView>
+            </View>
         );
     }
+    _renderErrorMsg = () =>{
+        return this.props.error ? <FormValidationMessage>{this.props.error.message}</FormValidationMessage>: null
+    };
 
-    _onSignupPress = () => {
-        this.props.signupUser(user);
+    _onSignupPress = async () => {
+        const user = {
+            name:this.props.name,
+            email:this.props.email,
+            password: this.props.password
+        };
+        await this.props.signupUserAsync(user);
     };
 
     _onInputTextChange = (field, value) => {
-        console.log('holaa ')
+        console.log('holaa ');
         this.props.updateSubmitForm(field, value);
     };
 }
@@ -65,7 +77,9 @@ function mapStateToProps(state, ownProps){
         name : state.signupForm.name,
         email : state.signupForm.email,
         password : state.signupForm.password,
-        error: state.signupForm.error //todo
+        error: state.signupForm.error,
+        newUser: state.authUser,
+        isSignupSpinnerShown:state.signupForm.isSignupSpinnerShown
     }
 }
 
