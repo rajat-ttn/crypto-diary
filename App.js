@@ -3,6 +3,10 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import firebase from 'firebase';
+import { Provider } from 'react-redux' //← Bridge React and Redux
+import store from './store';
+import notifyAuthStateChange from './actions/notifyAuthStateChange'
 
 export default class App extends React.Component {
   state = {
@@ -20,13 +24,15 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          <View style={{...Platform.select({ios:{height:20}, android:{height:24}})}}>
-              { Platform.OS === 'ios' && <StatusBar barStyle="dark-content" /> }
-              { Platform.OS === 'android' && <View style={styles.statusBarUnderlay} /> }
-          </View>
-          <RootNavigation />
-        </View>
+          <Provider store={store}>
+            <View style={styles.container}>
+              <View style={{...Platform.select({ios:{height:20}, android:{height:24}})}}>
+                  { Platform.OS === 'ios' && <StatusBar barStyle="dark-content" /> }
+                  { Platform.OS === 'android' && <View style={styles.statusBarUnderlay} /> }
+              </View>
+              <RootNavigation />
+            </View>
+          </Provider>
       );
     }
   }
@@ -56,6 +62,21 @@ export default class App extends React.Component {
   _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
   };
+
+  componentWillMount = () =>{
+        firebase.initializeApp( {
+            apiKey: "AIzaSyBfTx9D1iL3877JLt_yHTovWY-3goGs41E",
+            authDomain: "auth-4dcf8.firebaseapp.com",
+            databaseURL: "https://auth-4dcf8.firebaseio.com",
+            projectId: "auth-4dcf8",
+            storageBucket: "auth-4dcf8.appspot.com",
+            messagingSenderId: "971504198072"
+        });
+
+        firebase.auth().onAuthStateChanged((user) => {
+            store.dispatch(notifyAuthStateChange(user))
+        });
+    };
 }
 
 const styles = StyleSheet.create({

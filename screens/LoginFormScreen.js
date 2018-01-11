@@ -14,12 +14,10 @@ export default class LoginFormScreen extends React.Component {
 
           <FormLabel>Email</FormLabel>
           <FormInput/>
-          <FormValidationMessage>Email error message</FormValidationMessage>
-
           <FormLabel>Password</FormLabel>
           <FormInput/>
           <FormValidationMessage>Password error message</FormValidationMessage>
-          
+
         </View>
         <View style={styles.btnContainer}>
         <Button
